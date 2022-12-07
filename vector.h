@@ -25,6 +25,13 @@ public:
 	inline NUM operator[](const size_t index) const;
 	inline NUM& operator[](const size_t index);
 
+	// -----------------  magnitude
+	inline NUM magSquared() const;
+	inline NUM mag() const;
+
+	// -----------------  unary minus
+	inline vec operator-() const;
+
 	// -----------------  + and -
 	inline vec& operator+=(const vec& other);
 	inline vec& operator-=(const vec& other);
@@ -37,8 +44,16 @@ public:
 	inline vec operator*(const NUM fac) const;
 	inline vec operator/(const NUM fac) const;
 
-	// Skalarprodukt:
-	inline NUM operator*(const vec& other) const;
+	// -----------------  * and /  (componentwise)
+	inline vec& operator*=(const vec& other);
+	inline vec& operator/=(const vec& other);
+	inline vec operator*(const vec& other) const;
+	inline vec operator/(const vec& other) const;
+
+	// -----------------  dot / cross product:
+	inline NUM dot(const vec& other) const;
+	inline NUM cross(const vec& other) const requires (DIM == 2);
+	inline vec cross(const vec& other) const requires (DIM == 3);
 };
 
 template<size_t DIM, typename NUM>

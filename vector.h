@@ -20,6 +20,9 @@ public:
 	inline vec();
 	inline vec(const NUM val);
 	inline vec(std::initializer_list<NUM> _values);
+	template <typename ... ARGS>
+	inline vec(ARGS ... _values):
+		vec(std::initializer_list<NUM> { (NUM)_values ... }) { }
 
 	// Index operators
 	inline NUM operator[](const size_t index) const;
